@@ -16,7 +16,7 @@ ACppBaseActor::ACppBaseActor()
 void ACppBaseActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	ShowInformation();
 }
 
 // Called every frame
@@ -25,4 +25,8 @@ void ACppBaseActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-
+void ACppBaseActor::ShowInformation() {
+	FString PlayerName = "NETOLOGIA";
+	UE_LOG(LogTemp, Display, TEXT("name is %s"), *PlayerName);
+	GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Black, PlayerName, true, FVector2D(2.0f, 2.0f));
+}
