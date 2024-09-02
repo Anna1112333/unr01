@@ -5,6 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "CppBaseActor.generated.h"
+//#include У***.generated.hФ макрос
+//#include <Math.h> не находит
+
+class UStaticMeshComponent;
+UENUM(BluePrintType)
+enum class EMovementState : uint8 {Mobility, Static};
 
 UCLASS()
 class TASK__2_API ACppBaseActor : public AActor
@@ -17,7 +23,18 @@ public:
 	ACppBaseActor();
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
+UFUNCTION(BlueprintCallable)
+	void SinMovement(double t);
 protected:
+	
+	UPROPERTY(VisibleAnywhere)
+	double Amplitude;
+	UPROPERTY(VisibleAnywhere)
+	double Frequency;
+	UPROPERTY(VisibleAnywhere)
+	double InitialLocation[3];
+	UPROPERTY(VisibleAnywhere)
+	FVector InitialLocation0[3];
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UPROPERTY(EditInstanceOnly)
@@ -25,5 +42,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	UFUNCTION(BlueprintCallable)
 void ShowInformation();
 };

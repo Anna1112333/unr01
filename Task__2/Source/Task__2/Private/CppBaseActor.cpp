@@ -15,18 +15,26 @@ ACppBaseActor::ACppBaseActor()
 // Called when the game starts or when spawned
 void ACppBaseActor::BeginPlay()
 {
+	InitialLocation0->X= 70.0 ;
+	InitialLocation0->Y = 70.0;
+	InitialLocation0->Z = 140.0;
 	Super::BeginPlay();
 	ShowInformation();
+	
 }
 
 // Called every frame
 void ACppBaseActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	//SinMovement(DeltaTime);
 }
 void ACppBaseActor::ShowInformation() {
 	FString PlayerName = "NETOLOGIA";
 	UE_LOG(LogTemp, Display, TEXT("name is %s"), *PlayerName);
 	GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Black, PlayerName, true, FVector2D(2.0f, 2.0f));
+}
+
+void ACppBaseActor::SinMovement(double DeltaTime) {
+	InitialLocation0->Z = Amplitude*sin(Frequency* DeltaTime)+140.0;
 }
