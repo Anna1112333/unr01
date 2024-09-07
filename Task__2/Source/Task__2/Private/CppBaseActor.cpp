@@ -27,7 +27,7 @@ void ACppBaseActor::BeginPlay()
 void ACppBaseActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//SinMovement(DeltaTime);
+	SinMovement();
 }
 void ACppBaseActor::ShowInformation() {
 	FString PlayerName = "NETOLOGIA";
@@ -35,6 +35,12 @@ void ACppBaseActor::ShowInformation() {
 	GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Black, PlayerName, true, FVector2D(2.0f, 2.0f));
 }
 
-void ACppBaseActor::SinMovement(double DeltaTime) {
-	InitialLocation0->Z = Amplitude*sin(Frequency* DeltaTime)+140.0;
+void ACppBaseActor::SinMovement() {
+	UPROPERTY(EditAnywhere)
+	float result;
+	result = FMath::Sin(Frequency * GetWorld()->GetTimeSeconds()) * Amplitude;
+	this->SetActorLocation(FVector(this->InitialLocation0->X,
+		this->InitialLocation0->Y,
+		this->InitialLocation0->Z+result
+	));
 }

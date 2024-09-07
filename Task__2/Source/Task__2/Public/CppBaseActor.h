@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "CppBaseActor.generated.h"
 //#include У***.generated.hФ макрос
-//#include <Math.h> не находит
+
 
 class UStaticMeshComponent;
 UENUM(BluePrintType)
@@ -24,16 +24,16 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
 UFUNCTION(BlueprintCallable)
-	void SinMovement(double t);
+	void SinMovement();
 protected:
 	
 	UPROPERTY(VisibleAnywhere)
-	double Amplitude;
+	double Amplitude=70.0;
 	UPROPERTY(VisibleAnywhere)
-	double Frequency;
+	double Frequency=4.0;
 	UPROPERTY(VisibleAnywhere)
 	double InitialLocation[3];
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere)
 	FVector InitialLocation0[3];
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
